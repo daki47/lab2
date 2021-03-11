@@ -1,0 +1,75 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+// your code here
+class film
+{
+    char name[100];
+    char director[50];
+    char genre[50];
+    int year;
+
+ public:
+     film()
+     {
+         strcpy(name ,"unknown");
+         strcpy(director,"unknown");
+         strcpy(genre, "unknown");
+         year=0;
+     }
+     film(char _name[100], char _director[50], char _genre[50] , int _year)
+     {
+         strcpy(name ,_name);
+         strcpy(director,_director);
+         strcpy(genre, _genre);
+         year=_year;
+     }
+
+     void print_info()
+     {
+         cout<<"Name: "<<name<<endl;
+         cout<<"Director: "<<director<<endl;
+         cout<<"Genre: "<<genre<<endl;
+         cout<<"Year: "<<year<<endl;
+     }
+
+     int get_year()
+     {
+         return year;
+     }
+};
+
+void print_by_year(film *f, int n, int year)
+{
+    for(int i=0;i<n;i++)
+    {
+        if(f[i].get_year()==year)
+            f[i].print_info();
+    }
+}
+
+int main() {
+ 	int n;
+ 	cin >> n;
+ 	//declare array of n film objects
+    film f[n];
+ 	for(int i = 0; i < n; ++i) {
+ 		char name[100];
+ 		char director[50];
+ 		char genre[50];
+ 		int year;
+ 		cin >> name;
+ 		cin >> director;
+ 		cin >> genre;
+ 		cin >> year;
+        f[i](name, director, genre, year);
+
+ 	}
+ 	int curr_year;
+ 	cin >> curr_year;
+ 	print_by_year(f, n, curr_year);
+
+
+ 	return 0;
+ }
