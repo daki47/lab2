@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+class Circle {
+float r;
+const float PI=3.14;
+
+public:
+    Circle(){
+    r=1.0;
+    }
+    Circle(float _r){
+    r=_r;
+    }
+
+    float area()
+    {
+        return PI*r*r;
+    }
+    float perimeter()
+    {
+        return 2*PI*r;
+    }
+    int equal()
+    {
+        if(perimeter()==area())
+            return 1;
+        else
+            return 0;
+    }
+
+};
+
+int main() {
+	float r;
+	cin >> r;
+	//instanciate object from class Circle
+	Circle c(r);
+
+	cout << c.perimeter() << endl;
+	cout << c.area() << endl;
+	cout << c.equal() <<endl;
+	return 0;
+}
