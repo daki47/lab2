@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+class angle
+{
+    int degrees;
+    int minutes;
+    int seconds;
+
+public:
+    angle(int _degrees=0, int _minutes=0, int _seconds=0)
+    {
+        degrees=_degrees;
+        minutes=_minutes;
+        seconds=_seconds;
+    }
+    void setDegrees(int _Deg){
+        degrees=_Deg;
+    }
+    void setMinutes(int _Min){
+        minutes=_Min;
+    }
+    void setSeconds(int _Sec){
+        seconds=_Sec;
+    }
+
+    int getDegrees(){
+        return degrees;
+    }
+    int getMinutes(){
+        return minutes;
+    }
+    int getSeconds(){
+        return seconds;
+    }
+    int toSeconds()
+    {
+        return (degrees*3600)+(minutes*60)+seconds;
+    }
+};
+
+bool check(int deg, int min, int sec)
+{
+    if((deg>=0 && deg<360) && (min>=0 && min<60) && (sec>=0 && sec<60))
+        return 1;
+    else if(deg==360 && min==0 && sec==0)
+        return 1;
+     else
+            return 0;
+}
+
+bool checkAngle (angle a1, int deg, int min, int sec) {
+    return a1.getDegrees()==deg && a1.getMinutes()==min && a1.getSeconds()==sec;
+}
+
+int main() {
+
+    //instanciate object of class Angle, named a1
+    angle a1;
+    int deg, min, sec;
+
+    cin >> deg >> min >> sec;
+
+    if (check(deg, min, sec)) {
+
+    	a1.setDegrees(deg);
+        a1.setMinutes(min);
+        a1.setSeconds(sec);
+        cout << a1.toSeconds();
+
+        if (!checkAngle(a1,deg,min,sec)) {
+            cout<<"Don't change the internal state of the private variables in the class!!!!";
+        }
+
+    } else {
+    	cout << "Invalid values" << endl;
+    }
+
+    return 0;
+}
